@@ -1,0 +1,359 @@
+﻿/* 基本リセットとフォント */
+body {
+    font-family: 'Kosugi Maru', sans-serif; /* ポップで親しみやすい丸ゴシック */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* カラーパレット */
+:root {
+    --color-primary: #4CAF50; /* 緑 */
+    --color-secondary: #FFC107; /* 黄色 */
+    --color-accent: #8BC34A; /* 明るい緑 */
+    --color-text: #333;
+    --color-bg-light: #E8F5E9; /* 淡い緑 */
+}
+
+/* ボタンのスタイル */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: 2px solid var(--color-secondary);
+}
+
+.primary-btn:hover {
+    background-color: #FFEB3B;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ヘッダー/ナビゲーション */
+header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 24px;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: var(--color-primary);
+}
+
+/* --- ヒーローセクション/スライドショーの修正 --- */
+
+/* ヒーローセクション（スライドショーのコンテナ） */
+#hero {
+    color: white;
+    text-align: center;
+    padding: 0; 
+    position: relative;
+    overflow: hidden; 
+    
+    /* ボタンを収め、スライドショーを表示するために、最低限の高さを確保 */
+    min-height: 550px; 
+    
+    /* ボタンが下端で切れないようにするための余白を確保 */
+    padding-bottom: 50px; 
+    
+    /* 高さが100%になる基準点を明示的に設定 */
+    height: 100%; 
+}
+
+/* スライドショーコンテナ (ヒーロー全体の高さを利用) */
+.slideshow-container {
+    max-width: 100%;
+    position: absolute; /* 親要素(#hero)に対して絶対配置 */
+    top: 0;
+    left: 0;
+    height: 100%; /* 親要素の高さに合わせる */
+    width: 100%;
+    margin: auto;
+}
+
+/* スライド画像ラッパー */
+.mySlides {
+    display: none; 
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像が要素全体を覆うように調整 */
+    filter: brightness(0.6); /* 画像を少し暗くして文字を読みやすくする (0.6に強化) */
+}
+
+
+/* ヒーローコンテンツ（キャッチコピー）の位置調整 */
+.hero-content {
+    position: absolute;
+    top: 50%; /* 上から50%の位置に配置 */
+    left: 50%; /* 左から50%の位置に配置 */
+    
+    /* 要素の基準点を中心に移動させ、完全に中央に配置する */
+    transform: translate(-50%, -50%); 
+    
+    z-index: 20; /* 【最重要】Z-Indexを大幅に上げて、スライド(Z:3)や他の要素より確実に手前に表示 */
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    
+    padding: 40px 0; 
+    
+    /* 文字の色を確実に白に戻す */
+    color: white; 
+}
+
+#hero h2 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white; /* 念のため明示的に白色を指定 */
+}
+
+#hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    color: white; /* 念のため明示的に白色を指定 */
+}
+
+/* フェードインアニメーション */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* --- 一般コンテンツセクション --- */
+.content-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.bg-light {
+    background-color: var(--color-bg-light);
+}
+
+h3 {
+    font-size: 32px;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    border-bottom: 3px solid var(--color-secondary);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.main-purpose {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-weight: bold;
+}
+
+/* 特徴セクション */
+.feature-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 30px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.feature-item {
+    width: calc(33% - 20px); 
+    min-width: 250px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item .icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+}
+
+.feature-item h4 {
+    font-size: 22px;
+    color: var(--color-text);
+    margin-top: 0;
+}
+
+/* 効果セクション */
+.impact-list ul {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.impact-list li {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    border-left: 5px solid var(--color-accent);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.impact-list li strong {
+    color: var(--color-primary);
+    font-size: 18px;
+}
+
+/* お問い合わせセクション */
+.contact-section {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 60px 0;
+}
+
+.contact-section h3 {
+    color: white;
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: var(--color-text);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contact-form button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.form-message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+/* フッター */
+footer {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    #hero h2 {
+        font-size: 32px;
+    }
+    
+    .feature-item {
+        width: 100%; 
+    }
+
+    header .container {
+        flex-direction: column;
+    }
+
+    header nav ul {
+        margin-top: 10px;
+    }
+}
